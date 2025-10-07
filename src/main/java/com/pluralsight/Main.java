@@ -1,7 +1,5 @@
 package com.pluralsight;
 
-import javax.sound.sampled.Line;
-import java.io.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,8 +19,27 @@ public class Main {
         String name = attributes[1];
         double hoursWorked = attributes[2];
         double payRate = [3];
+        double grossPay;
+        grossPay = double.parseDouble(attributes [4]);
 
         //employee object
+        Employees employee1 = new Employees(int id, String name, double hoursWorked, double payRate);
+        Employees employee2 = new Employees(int id, String name, double hoursWorked, double payRate);
+        Employees employee3 = new Employees(int id, String name, double hoursWorked, double payRate);
+        Employees employee4 = new Employees(int id, String name, double hoursWorked, double payRate);
+
+        //Display the employee using a printf and by calling the employee's
+        //getEmployeeId(), getName(), and getGrossPay() methods
+        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
+                employee4.getEmployeeId(), employee4.getName(), employee4.getGrossPay());
+        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
+                employee2.getEmployeeId(), employee2.getName(), employee2.getGrossPay());
+        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
+                employee3.getEmployeeId(), employee3.getName(), employee3.getGrossPay());
+        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
+                employee4.getEmployeeId(), employee4.getName(), employee4.getGrossPay());
+
+
 
         // close the stream and release the resources
         bufReader.close();
