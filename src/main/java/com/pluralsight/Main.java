@@ -1,14 +1,11 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
         String filepath = "employees.csv"; //file path
-        try (
-                BufferedReader bufReader = new BufferedReader(new FileReader("employees.csv"))) {
+        try (BufferedReader bufReader = new BufferedReader(new FileReader("employees.csv"))) {
             //file reader object and buffer reader to manage input
             String input = null; //Placeholder for every line of text to be read
 
@@ -22,30 +19,22 @@ public class Main {
                 double hoursWorked = Double.parseDouble(attributes[2]);
                 double payRate = Double.parseDouble(attributes[3]);
                 Employees employee = new Employees(id, name, hoursWorked, payRate);
-                System.out.printf("ID: %s, Name: %16s, Gross Pay: $%.2f%n",
-                        employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
-            }
-        } catch (IOException e) {
+                // System.out.printf("ID: %s, Name: %16s, Gross Pay: $%.2f%n",
+                //  employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
+                // Instead of printing to screen, write to console
+                // create a FileWriter
+                FileWriter fileWriter = new FileWriter("punchCard.txt");
+                // create a BufferedWriter
+                BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+                // write to the file
+                while ((input = bufReader.readLine()) != null) {
+                    input = String.format(employee + "\n");
+                    bufWriter.write(input);
+                    bufWriter.close();
+                }
+            }}
+        catch (IOException e) {
             // display stack trace if there was an error
-            System.out.println("sorry! Something went wrong: " + e.getMessage());
+            System.out.println("sorry! Something went wrong: " + e.getMessage());}
+            }
         }
-
-    }}
-
-    //employee object
-//        Employees employee1 = new Employees( int id, String name,double hoursWorked, double payRate);
-//        Employees employee2 = new Employees( int id, String name,double hoursWorked, double payRate);
-//        Employees employee3 = new Employees( int id, String name,double hoursWorked, double payRate);
-//        Employees employee4 = new Employees( int id, String name,double hoursWorked, double payRate);
-//
-//        //Display the employee using a print and by calling the employee's
-//        //getEmployeeId(), getName(), and getGrossPay() methods
-//
-//        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
-//                employee2.getEmployeeId(), employee2.getName(), employee2.getGrossPay());
-//        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
-//                employee3.getEmployeeId(), employee3.getName(), employee3.getGrossPay());
-//        System.out.printf("ID: %s, Name: %s, Gross Pay: $%.2f%n",
-//                employee4.getEmployeeId(), employee4.getName(), employee4.getGrossPay());
-
-    // close the stream and release the resources
